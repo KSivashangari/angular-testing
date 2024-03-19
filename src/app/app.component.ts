@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-testing';
+  titles:string[]=[];
+  disableHeading=false;
+  addTitle(){
+    this.titles.push(this.title)
+    console.log(this.titles);
+  }
 }

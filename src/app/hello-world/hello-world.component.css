@@ -1,0 +1,15 @@
+h1{
+    color:red;
+}
+.table{
+    --bs-table-bg: none;
+}
+.primary{
+    color:red;
+}
+.big{
+    font-size: xx-large;
+}
+.italic{
+    font-style: italic;
+}

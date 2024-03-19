@@ -1,0 +1,164 @@
+<h1>hello-world works!</h1>
+<h1 [innerText] = 'firstName'></h1>
+
+<h1>{{lastName}}</h1>
+
+<br>
+<input type="text" [(ngModel)] ='lastName'>
+
+
+<br>
+<p>Largest number:{{getMax(100,200)}}</p>
+<p>100 X 80 ={{100 * 80}}</p>
+
+<br>
+<!-- property binding -->
+<p [innerText] = "firstName"></p>
+<button [disabled]="isDisabled">click me</button>
+
+<!-- Event binding -->
+<p>you have clicked{{clickCount}}</p>
+<p>copy of clicked{{clickcount1}}</p>
+<button (click)="clickme();">click me</button>
+<br>
+<br>
+<button (click)="clickme(); clickcount1=clickCount">click me</button>
+<br>
+<!-- how to bind textbox value(With handle event) -->
+Type Something:<input type="text" (input)="handleInput($event)">
+<p>{{value}}</p>
+<br>
+<!-- without handle event -->
+Type something:<input type="text" (input)="value1=$any($event.target).value">
+<p>{{value1}}</p>
+<br>
+
+<h1>{{title}}</h1>
+<ul>
+    <li *ngFor="let movie of movies">{{movie}}</li>
+</ul>
+
+<ul>
+    <li *ngFor="let moviee of movies1">{{moviee.title}} - {{moviee.releaseDate}}</li>
+</ul>
+<br>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{title}}
+    </div>
+    <div class="panel-body">
+         <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>S.no</th>
+                        <th>Title</th>
+                        <th>Director</th>
+                        <th>Cast</th>
+                        <th>Release Date</th>
+                    </tr>
+                </thead>
+                <tbody>   
+                    <tr [ngClass] = '{"bg-success":o, "bg-danger":e}'   
+                     *ngFor="let movieee of movies1; let i=index, let o=odd; let e=even; let f=first; let l=last">
+
+                    <!-- <tr [ngClass] = '{"bg-warning":f, "bg-info":l}'
+                    *ngFor="let movieee of movies1; let i=index, let o=odd; let e=even; let f=first; let l=last"> -->
+                        <td>{{i + 1}}</td>
+                        <td>{{movieee.title}}</td>
+                        <td>{{movieee.director}}</td>
+                        <td>{{movieee.cast}}</td>
+                        <td>{{movieee.releaseDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>   
+    </div>
+</div>
+
+<br>
+<!-- ngSwitch -->
+<label for="">Type num</label>
+<input type="text" [(ngModel)] ="num">
+<div [ngSwitch]="num">
+    <div *ngSwitchCase="1">one</div>
+    <div *ngSwitchCase="3">two</div>
+</div>
+<!-- ngIf -->
+<h1>ngIf Example</h1>
+<p *ngIf="">can you see me?</p>
+
+<div class="row">
+    <input type="checkbox" [(ngModel)] ="showMe">
+</div>
+{{showMe}}
+<p *ngIf="showMe; else elseBlock">Showme is checked</p>
+<!-- <p *ngIf="!showMe">Showme is unchecked</p> -->
+
+<!-- else -->
+<ng-template #elseBlock>
+    <p>Showme is unchecked</p>
+</ng-template>
+<!-- then and else block -->
+<div *ngIf="showMe; then thenBlock; else elseBlock">
+</div>
+<ng-template #thenBlock>
+    <p>Showme is checked</p>
+</ng-template>
+<ng-template #elseBlock>
+    <p>Showme is unchecked</p>
+</ng-template>
+
+<!-- Attribute directive -->
+<!-- ngClass -->
+<div [ngClass]="['primary','big']">
+    samples text
+</div>
+<input type="checkbox" [(ngModel)]="enabledRed">
+
+<div [ngClass]="{'primary':enabledRed}">
+    sample Text
+</div>
+<!-- ngClass -->
+Red<input type="checkbox" [(ngModel)]="enabledRed">
+Big<input type="checkbox" [(ngModel)]="enabledbig">
+Italic<input type="checkbox" [(ngModel)]="enabledItalic">
+<div [ngClass]="{
+'primary':enabledRed,
+'big':enabledbig,
+'italic':enabledItalic,}">
+sample text
+</div>
+<br>
+<br>
+<!-- ngStyle -->
+<div [ngStyle]="{'color':'red'}">
+Sample Text
+</div>
+
+<br>
+<!-- Two way binding -->
+Color:<input type="text" [(ngModel)] ="color">
+backcolor:<input type="text" [(ngModel)] ="backcolor">
+<div [ngStyle]="{'color':color, 'backgroundColor':backcolor}">Sample Text</div>
+<br>
+
+<!-- Pipe symbol usage -->
+<p>Unformatted date:{{todate}}</p>
+<p>Formatted date:{{todate|date}}</p>
+<p>Medium date:{{todate|date:'medium'}}</p>
+<p>Short date:{{todate|date:'short'}}</p>
+<p>Fulldate:{{todate|date:'fullDate'}}</p>
+<p>Longdate:{{todate|date:'longDate'}}</p>
+<!-- pipe uppercase usage -->
+<p>Uppercase:{{message | uppercase}}</p>
+<p>Lowercase:{{message | lowercase}}</p>
+<!-- slice -->
+<p>Original:{{message | slice:11:20}}</p>
+<p>Original:{{message | slice:-7}}</p>
+<p>Original:{{message | slice:0:7}}</p>
+<!-- pipe currency -->
+<p>price without formatting:{{price}}</p>
+<p>price with formatting:{{price|currency}}</p>
+<p>price with formatting:{{price|currency:'INR'}}</p>
+<p>price with formatting:{{price|currency:'INR':false}}</p>
